@@ -1,0 +1,532 @@
+/* ======================================
+   CSS Variables & Theme
+====================================== */
+:root {
+  --font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Colors */
+  --primary: #6366f1;
+  --primary-hover: #818cf8;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+
+  /* Borders */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+}
+
+/* Dark Theme (default) */
+.dark-theme {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border-color: #334155;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Light Theme */
+.light-theme {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --border-color: #e2e8f0;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ======================================
+   Reset & Base Styles
+====================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow: hidden;
+}
+
+/* ======================================
+   App Container
+====================================== */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-height: 100vh;
+}
+
+/* ======================================
+   Header
+====================================== */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo i {
+  font-size: 1.5rem;
+  color: var(--primary);
+}
+
+.logo h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.logo .highlight {
+  background: linear-gradient(135deg, var(--primary), #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* ======================================
+   Main Grid Layout
+====================================== */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  flex: 1;
+  min-height: 0; /* Important for nested scroll */
+  overflow: hidden;
+}
+
+/* ======================================
+   Panels
+====================================== */
+.panel {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-color);
+  gap: 1rem;
+}
+
+.panel-header h2 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+}
+
+.panel-header h2 i {
+  color: var(--primary);
+}
+
+.panel-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.panel-footer {
+  padding: 0.5rem 1rem;
+  background: var(--bg-tertiary);
+  border-top: 1px solid var(--border-color);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ======================================
+   Editor Container
+====================================== */
+.editor-container {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.editor-container textarea {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  border: none;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  resize: none;
+  outline: none;
+}
+
+.editor-container textarea::placeholder {
+  color: var(--text-muted);
+}
+
+/* Output Code View */
+.editor-container pre {
+  height: 100%;
+  margin: 0;
+  padding: 1rem;
+  overflow: auto;
+  background: var(--bg-secondary) !important;
+}
+
+.editor-container pre code {
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* View Containers */
+.view-container {
+  display: none;
+}
+
+.view-container.active {
+  display: block;
+}
+
+/* JSONEditor Container */
+#jsoneditor {
+  height: 100%;
+}
+
+/* Override JSONEditor colors for dark theme */
+.dark-theme .jsoneditor {
+  border: none !important;
+}
+
+.dark-theme .jsoneditor-menu {
+  background-color: var(--bg-tertiary) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.dark-theme .jsoneditor-tree,
+.dark-theme .jsoneditor-outer {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* ======================================
+   Tools Panel
+====================================== */
+.tools-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  width: 140px;
+}
+
+.tools-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tools-group h3 {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.swap-group {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+/* ======================================
+   Buttons
+====================================== */
+.tool-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tool-btn:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.tool-btn:active {
+  transform: translateY(0);
+}
+
+.tool-btn.secondary {
+  background: transparent;
+  border-style: dashed;
+}
+
+.tool-btn.secondary:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--primary);
+  color: var(--primary);
+  box-shadow: none;
+}
+
+/* Icon Button */
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.icon-btn:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+/* Text Button */
+.text-btn {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.text-btn:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+/* View Toggle Buttons */
+.view-toggles {
+  display: flex;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+  border: 1px solid var(--border-color);
+}
+
+.view-btn {
+  padding: 0.375rem 0.75rem;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.view-btn.active {
+  background: var(--primary);
+  color: white;
+}
+
+.view-btn:not(.active):hover {
+  color: var(--text-primary);
+}
+
+/* ======================================
+   Toast Notification
+====================================== */
+.toast {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  padding: 0.75rem 1.5rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.toast.success {
+  border-color: var(--success);
+}
+.toast.success i {
+  color: var(--success);
+}
+
+.toast.error {
+  border-color: var(--danger);
+}
+.toast.error i {
+  color: var(--danger);
+}
+
+.toast.warning {
+  border-color: var(--warning);
+}
+.toast.warning i {
+  color: var(--warning);
+}
+
+/* ======================================
+   Scrollbar Styling
+====================================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ======================================
+   Prism.js Theme Override for Light Mode
+====================================== */
+.light-theme code[class*="language-"],
+.light-theme pre[class*="language-"] {
+  color: #383a42 !important;
+  text-shadow: none !important;
+}
+
+.light-theme .token.property,
+.light-theme .token.string {
+  color: #50a14f !important;
+}
+
+.light-theme .token.number,
+.light-theme .token.boolean,
+.light-theme .token.null {
+  color: #c18401 !important;
+}
+
+.light-theme .token.punctuation {
+  color: #383a42 !important;
+}
+
+/* ======================================
+   Responsive
+====================================== */
+@media (max-width: 900px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto 1fr;
+  }
+
+  .tools-panel {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .tools-group {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .tools-group h3 {
+    display: none;
+  }
+
+  .swap-group {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+    border-left: 1px solid var(--border-color);
+    padding-left: 1rem;
+  }
+}

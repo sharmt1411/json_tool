@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSON All-in-One Tool</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- JSON Editor -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/9.10.0/jsoneditor.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!-- Prism Syntax Highlighting -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="dark-theme">
+    <div class="app-container">
+      <!-- Header -->
+      <header class="app-header">
+        <div class="logo">
+          <i class="fa-solid fa-code-branch"></i>
+          <h1>JSON<span class="highlight">Master</span></h1>
+        </div>
+        <div class="header-controls">
+          <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="main-grid">
+        <!-- Left Panel: Input -->
+        <section class="panel input-panel">
+          <div class="panel-header">
+            <h2><i class="fa-solid fa-pen-to-square"></i> Input / Raw</h2>
+            <div class="panel-actions">
+              <button class="action-btn text-btn" id="clear-input">
+                Clear
+              </button>
+              <button class="action-btn text-btn" id="paste-input">
+                Paste
+              </button>
+            </div>
+          </div>
+          <div class="editor-container">
+            <textarea
+              id="json-input"
+              placeholder="Paste your JSON or text here..."
+              spellcheck="false"
+            ></textarea>
+          </div>
+          <div class="panel-footer">
+            <span id="input-stats">0 chars</span>
+          </div>
+        </section>
+
+        <!-- Center Panel: Tools -->
+        <section class="tools-panel">
+          <div class="tools-group">
+            <h3>Transform</h3>
+            <button
+              class="tool-btn"
+              data-action="format"
+              title="Format / Beautify JSON"
+            >
+              <i class="fa-solid fa-align-left"></i> Format
+            </button>
+            <button
+              class="tool-btn"
+              data-action="minify"
+              title="Minify / Compress JSON"
+            >
+              <i class="fa-solid fa-compress"></i> Minify
+            </button>
+          </div>
+
+          <div class="tools-group">
+            <h3>Fix & Valid</h3>
+            <button
+              class="tool-btn"
+              data-action="fix"
+              title="Fix invalid JSON (quotes, commas)"
+            >
+              <i class="fa-solid fa-wrench"></i> JSON Fixer
+            </button>
+            <button
+              class="tool-btn"
+              data-action="validate"
+              title="Validate JSON"
+            >
+              <i class="fa-solid fa-check-double"></i> Validate
+            </button>
+          </div>
+
+          <div class="tools-group">
+            <h3>String</h3>
+            <button
+              class="tool-btn"
+              data-action="escape"
+              title="Escape JSON to String"
+            >
+              <i class="fa-solid fa-quote-right"></i> Escape
+            </button>
+            <button
+              class="tool-btn"
+              data-action="unescape"
+              title="Unescape String to JSON"
+            >
+              <i class="fa-solid fa-quote-left"></i> Unescape
+            </button>
+          </div>
+
+          <div class="tools-group swap-group">
+            <button
+              class="tool-btn secondary"
+              id="swap-btn"
+              title="Swap Output to Input"
+            >
+              <i class="fa-solid fa-arrow-left"></i> Use Result
+            </button>
+          </div>
+        </section>
+
+        <!-- Right Panel: Output -->
+        <section class="panel output-panel">
+          <div class="panel-header">
+            <h2><i class="fa-solid fa-code"></i> Result</h2>
+            <div class="view-toggles">
+              <button class="view-btn active" data-view="text">Text</button>
+              <button class="view-btn" data-view="tree">Tree</button>
+            </div>
+            <div class="panel-actions">
+              <button
+                class="action-btn icon-btn"
+                id="copy-output"
+                title="Copy to Clipboard"
+              >
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Text View -->
+          <div class="editor-container view-container active" id="view-text">
+            <pre><code id="json-output" class="language-json"></code></pre>
+          </div>
+
+          <!-- Tree View -->
+          <div class="editor-container view-container" id="view-tree">
+            <div id="jsoneditor"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/9.10.0/jsoneditor.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <!-- JSON Repair Library - handles missing brackets, quotes, etc. -->
+    <script src="https://cdn.jsdelivr.net/npm/jsonrepair@3.13.1/lib/umd/jsonrepair.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
