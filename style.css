@@ -257,6 +257,79 @@ body {
   color: var(--text-primary) !important;
 }
 
+/* Fix tree view text colors */
+.dark-theme .jsoneditor-field,
+.dark-theme .jsoneditor-value,
+.dark-theme .jsoneditor-readonly {
+  color: var(--text-primary) !important;
+}
+
+/* Key names (field) */
+.dark-theme .jsoneditor-field {
+  color: #a78bfa !important; /* Purple for keys */
+}
+
+/* String values */
+.dark-theme .jsoneditor-value.jsoneditor-string {
+  color: #34d399 !important; /* Green for strings */
+}
+
+/* Number values */
+.dark-theme .jsoneditor-value.jsoneditor-number {
+  color: #fbbf24 !important; /* Yellow for numbers */
+}
+
+/* Boolean values */
+.dark-theme .jsoneditor-value.jsoneditor-boolean {
+  color: #f472b6 !important; /* Pink for booleans */
+}
+
+/* Null values */
+.dark-theme .jsoneditor-value.jsoneditor-null {
+  color: #94a3b8 !important; /* Gray for null */
+}
+
+/* Array/Object brackets and separators */
+.dark-theme .jsoneditor-separator,
+.dark-theme .jsoneditor-bracket {
+  color: var(--text-secondary) !important;
+}
+
+/* Context menu */
+.dark-theme .jsoneditor-contextmenu .jsoneditor-menu {
+  background: var(--bg-tertiary) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.dark-theme .jsoneditor-contextmenu .jsoneditor-menu button {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+}
+
+.dark-theme .jsoneditor-contextmenu .jsoneditor-menu button:hover {
+  background: var(--primary) !important;
+}
+
+/* Search box */
+.dark-theme .jsoneditor-search input,
+.dark-theme .jsoneditor-frame input {
+  background: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Navigation path */
+.dark-theme .jsoneditor-navigation-bar {
+  background: var(--bg-tertiary) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Expand/collapse buttons */
+.dark-theme .jsoneditor-button {
+  filter: invert(1) brightness(0.8);
+}
+
 /* ======================================
    Tools Panel
 ====================================== */
